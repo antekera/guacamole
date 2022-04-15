@@ -14,3 +14,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.container {
+  background: lightgray;
+}
+
+.container > .container {
+  background: lightgreen;
+}
+
+.container > .container > .container {
+  background: lightcoral;
+}
