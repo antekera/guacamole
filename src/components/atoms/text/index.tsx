@@ -15,7 +15,11 @@ const Text = ({ text, tag, className }: TextProps) => {
   const classes = cn('text', className)
 
   const CustomTag = `${tag}` as keyof JSX.IntrinsicElements
-  return <CustomTag className={classes}>{text}</CustomTag>
+  return (
+    <CustomTag className={classes}>
+      {text} - {className}
+    </CustomTag>
+  )
 }
 
 Text.defaultProps = defaultProps
