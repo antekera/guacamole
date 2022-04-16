@@ -5,36 +5,32 @@ import { uid } from 'uid'
 
 import { keysToComponentMap } from './keysToComponentMap'
 
-const component = id => keysToComponentMap[id]
+const getComponent = id => keysToComponentMap[id]
 
-const childrenRenderer = (innerTree, innerBlock) => {
-  if (!innerTree) return null
+const childrenRenderer = (children, block) => {
+  if (!children) return null
 
-  return Object.keys(innerTree).map(id => {
-    return React.createElement(component(id), {
+  return Object.values(children).map(({ component, ...props }) => {
+    return React.createElement(getComponent(component), {
       key: uid(),
-      block: innerBlock,
-      ...innerTree[id],
+      block: block,
+      ...props,
     })
   })
 }
 
 const block = tree => {
-  return Object.keys(tree).map(id => {
-    const props = tree[`${id}`]
-    const Component = component(id)
+  if (!tree) return null
 
+  return Object.values(tree).map(({ component, ...props }) => {
+    const Component = getComponent(component)
     if (!R.isNil(Component)) {
-      const { components } = props
+      const { children } = props
       const secondLevel =
-        components &&
-        Object.keys(components).map(idSecond => {
-          const props2nd = components[idSecond]
-          const { components: components2nd } = props
-          const Component2nd = component(idSecond)
-
-          // Third Level
-          const thirdLevel = childrenRenderer(components2nd, block)
+        children &&
+        Object.values(children).map(({ component: comp2nd, ...props2nd }) => {
+          const Component2nd = getComponent(component)
+          const thirdLevel = childrenRenderer(props2nd.children, block)
 
           return React.createElement(
             Component2nd,
@@ -61,7 +57,7 @@ const block = tree => {
     return React.createElement(
       () => (
         <div className='container px-5 mx-auto border-2 border-red'>
-          The component {id} has not been created yet.
+          The component {component} has not been created yet.
         </div>
       ),
       { key: uid() }
