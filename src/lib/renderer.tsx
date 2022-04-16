@@ -22,26 +22,26 @@ const childrenRenderer = (innerTree, innerBlock) => {
 const block = tree => {
   return Object.keys(tree).map(id => {
     const props = tree[`${id}`]
-    const Component = component(props.component)
+    const Component = component(id)
 
     if (!R.isNil(Component)) {
+      const { components } = props
       const secondLevel =
-        props.components &&
-        Object.keys(props.components).map(idSecond => {
-          const propsSecondLevel = props.components[idSecond]
+        components &&
+        Object.keys(components).map(idSecond => {
+          const props2nd = components[idSecond]
+          const { components: components2nd } = props
+          const Component2nd = component(idSecond)
 
           // Third Level
-          const thirdLevel = childrenRenderer(
-            propsSecondLevel.components,
-            block
-          )
+          const thirdLevel = childrenRenderer(components2nd, block)
 
           return React.createElement(
-            component(propsSecondLevel.component),
+            Component2nd,
             {
               key: uid(),
               block: block,
-              ...propsSecondLevel,
+              ...props2nd,
             },
             thirdLevel
           )

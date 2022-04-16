@@ -2,28 +2,10 @@
  * Styles home
  */
 
-// TODO: DEFINIR PROPIEDADES DE ESTOS JSONS
+import { Component, ContentDataInterface } from '../../lib/types'
 
-export const styles = {
-  card: {
+export const styles: ContentDataInterface = {
+  [Component.container]: {
     className: 'card-classname',
-  },
-  body: {
-    className: 'body-classname',
-  },
-  title: {
-    className: 'title-classname',
-  },
-  subtitle: {
-    className: 'subtitle-classname',
-  },
-  text: {
-    className: 'text-classname',
-  },
-  button: {
-    className: 'button-classname',
-  },
-  failcomp: {
-    className: 'failcomp-classname',
   },
 }

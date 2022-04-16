@@ -5,8 +5,6 @@ import Head from 'next/head'
 import { fetcher, Renderer } from '../lib'
 
 const Page = ({ data }) => {
-  console.log(data)
-
   if (data.notFound) {
     return <ErrorPage statusCode={404} />
   }
