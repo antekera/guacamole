@@ -34,13 +34,15 @@ export enum Component {
 }
 
 interface Content {
+  component: Component
   title?: string
 }
 interface Styles {
   className: string
+  component: Component
 }
 interface Components {
-  id: Component
+  component: Component
 }
 
 export interface ContentDataInterface {

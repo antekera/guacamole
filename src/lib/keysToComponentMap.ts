@@ -1,5 +1,7 @@
-import { Container } from '../components/container'
+import { Container, Text } from '../components/'
+import { Component } from '../lib/types'
 
 export const keysToComponentMap = {
-  container: Container,
+  [Component.container]: Container,
+  [Component.text]: Text,
 }
