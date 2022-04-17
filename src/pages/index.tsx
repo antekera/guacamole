@@ -2,15 +2,16 @@ import type { NextPage } from 'next'
 import ErrorPage from 'next/error'
 import Head from 'next/head'
 
+import { Container } from '../components/'
 import { fetcher, Renderer } from '../lib'
-import { ContentDataInterface } from '../lib/types'
+import { IData } from '../lib/types'
 
-const Page = ({ data }: ContentDataInterface) => {
+const Page = (data: IData) => {
   if (data.notFound) {
     return <ErrorPage statusCode={404} />
   }
 
-  if (!data) return 'Loading...'
+  if (!data) return <Container>Loading...</Container>
 
   return (
     <>
@@ -25,14 +26,18 @@ const Page = ({ data }: ContentDataInterface) => {
   )
 }
 
-const Home: NextPage = data => {
+const Home: NextPage<IData> = data => {
   return <Page {...data} />
 }
 
-export const getServerSideProps = async ({ resolvedUrl }: string) => {
-  const data = await fetcher(resolvedUrl)
+export const getServerSideProps = async ({
+  resolvedUrl: url,
+}: {
+  resolvedUrl: string
+}) => {
+  const data = await fetcher(url)
 
-  return { props: { data } }
+  return { props: { ...data } }
 }
 
 export default Home

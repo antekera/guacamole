@@ -2,9 +2,9 @@
  * Styles home
  */
 
-import { ContentDataInterface } from '../../lib/types'
+import { IStyles } from '../../lib/types'
 
-export const styles: ContentDataInterface = {
+export const styles: IStyles = {
   main_1: {
     className: 'classname-1',
   },

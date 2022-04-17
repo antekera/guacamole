@@ -33,27 +33,33 @@ export enum Component {
   video = 'video',
 }
 
-interface Children {
+export interface IChildren {
   [name: string]: {
     component: Component
-    children?: Children
+    children?: IChildren
   }
 }
 
-interface ContentInterface {
-  title?: string
-  text?: string
+export interface IContent {
+  [name: string]: {
+    title?: string
+    text?: string
+  }
 }
 
-interface StylesInterface {
-  className: string
+export interface IStyles {
+  [name: string]: {
+    className: string
+  }
 }
 
-interface ComponentInterface {
-  component: Component
-  children?: Children
+export interface IComponent {
+  [name: string]: {
+    component: Component
+    children?: IChildren
+  }
 }
 
-export interface ContentDataInterface {
-  [name: string]: ComponentInterface | StylesInterface | ContentInterface
+export interface IData {
+  [name: string]: IComponent | IStyles | IContent
 }

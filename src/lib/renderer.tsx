@@ -3,12 +3,12 @@ import React from 'react'
 import * as R from 'ramda'
 import { uid } from 'uid'
 
-import { ContentDataInterface } from '../lib/types'
+import { IChildren, IData } from '../lib/types'
 import { keysToComponentMap } from './keysToComponentMap'
 
-const getComponent = id => keysToComponentMap[id]
+const getComponent = (id: string) => keysToComponentMap[id]
 
-const childrenRenderer = (children, block) => {
+const childrenRenderer = (children: IChildren, block: any) => {
   if (!children) return null
 
   return Object.values(children).map(({ component, ...props }) => {
@@ -20,17 +20,18 @@ const childrenRenderer = (children, block) => {
   })
 }
 
-const block = (tree: ContentDataInterface) => {
+const block = (tree: IData) => {
   if (!tree) return null
 
-  return Object.values(tree).map(({ component, ...props }) => {
-    const Component = getComponent(component)
-    if (!R.isNil(Component)) {
+  return Object.values(tree).map(props => {
+    // @ts-ignore
+    const Component1 = getComponent(props.component)
+    if (!R.isNil(Component1)) {
       const { children } = props
       const secondLevel =
         children &&
         Object.values(children).map(({ component: comp2nd, ...props2nd }) => {
-          const Component2nd = getComponent(component)
+          const Component2nd = getComponent(comp2nd)
           const thirdLevel = childrenRenderer(props2nd.children, block)
 
           return React.createElement(
@@ -45,7 +46,7 @@ const block = (tree: ContentDataInterface) => {
         })
 
       return React.createElement(
-        Component,
+        Component1,
         {
           key: uid(),
           block: block,
@@ -58,7 +59,7 @@ const block = (tree: ContentDataInterface) => {
     return React.createElement(
       () => (
         <div className='container px-5 mx-auto border-2 border-red'>
-          The component {component} has not been created yet.
+          The component {Component1} has not been created yet.
         </div>
       ),
       { key: uid() }
@@ -66,6 +67,6 @@ const block = (tree: ContentDataInterface) => {
   })
 }
 
-export const Renderer = (tree: ContentDataInterface) => {
+export const Renderer = (tree: IData) => {
   return block(tree)
 }

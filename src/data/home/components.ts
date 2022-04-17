@@ -2,9 +2,9 @@
  * Components home
  */
 
-import { Component, ContentDataInterface } from '../../lib/types'
+import { Component, IComponent } from '../../lib/types'
 
-export const components: ContentDataInterface = {
+export const components: IComponent = {
   main_1: {
     component: Component.container,
   },

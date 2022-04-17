@@ -2,9 +2,9 @@
  * Content home
  */
 
-import { ContentDataInterface } from '../../lib/types'
+import { IContent } from '../../lib/types'
 
-export const content: ContentDataInterface = {
+export const content: IContent = {
   main_1: {
     title: 'TEST TITLE 1',
   },
