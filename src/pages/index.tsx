@@ -5,7 +5,6 @@ import Head from 'next/head'
 
 import { Container } from '../components/'
 import { fetcher, Renderer } from '../lib'
-console.log(Renderer)
 import { IData } from '../lib/types'
 
 const Home: NextPage<IData> = data => {
