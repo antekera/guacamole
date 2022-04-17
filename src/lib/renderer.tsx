@@ -67,6 +67,6 @@ const block = (tree: IData) => {
   })
 }
 
-export const Renderer = (tree: IData) => {
+export const Renderer = (tree: IData): React.ReactNode => {
   return block(tree)
 }
