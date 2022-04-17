@@ -1,5 +1,5 @@
 /**
- * Data modules
+ * Data pages
  */
 
 import matchComponentsProps from './getData'
