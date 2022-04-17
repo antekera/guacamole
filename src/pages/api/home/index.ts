@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import * as R from 'ramda'
 
-import { components, content, styles } from '../../data/home'
-import { IComponent } from '../../lib/types'
+import { components, content, styles } from '../../../data/home'
+import { IComponent } from '../../../lib/types'
 
 const props = R.mergeDeepLeft(content, styles)
 

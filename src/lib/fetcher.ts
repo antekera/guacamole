@@ -2,7 +2,7 @@
  * Fetcher
  */
 
-export const fetcher = async (path: string) => {
+export const fetcher = async (path = '/home') => {
   const URL = `${process.env.HOST}/api${path}`
   const res = await fetch(URL)
 

@@ -26,13 +26,12 @@ const Home: NextPage<IData> = data => {
   )
 }
 
-export const getServerSideProps = async ({
+export const getStaticProps = async ({
   resolvedUrl: url,
 }: {
   resolvedUrl: string
 }) => {
   const data = await fetcher(url)
-
   return { props: { ...data } }
 }
 
