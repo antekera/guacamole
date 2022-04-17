@@ -19,11 +19,7 @@ const Container = ({
   sidebar,
   title,
 }: ContainerProps) => {
-  const classes = cn(
-    'container px-5 mx-auto border-2 border-black',
-    { flex: sidebar },
-    className
-  )
+  const classes = cn('container px-5 mx-auto', { flex: sidebar }, className)
 
   const CustomTag = `${tag}` as keyof JSX.IntrinsicElements
   return (
