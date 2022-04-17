@@ -3,8 +3,9 @@ import ErrorPage from 'next/error'
 import Head from 'next/head'
 
 import { fetcher, Renderer } from '../lib'
+import { ContentDataInterface } from '../lib/types'
 
-const Page = ({ data }) => {
+const Page = ({ data }: ContentDataInterface) => {
   if (data.notFound) {
     return <ErrorPage statusCode={404} />
   }
@@ -28,7 +29,7 @@ const Home: NextPage = data => {
   return <Page {...data} />
 }
 
-export const getServerSideProps = async ({ resolvedUrl }) => {
+export const getServerSideProps = async ({ resolvedUrl }: string) => {
   const data = await fetcher(resolvedUrl)
 
   return { props: { data } }

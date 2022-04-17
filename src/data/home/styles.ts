@@ -2,7 +2,7 @@
  * Styles home
  */
 
-import { Component, ContentDataInterface } from '../../lib/types'
+import { ContentDataInterface } from '../../lib/types'
 
 export const styles: ContentDataInterface = {
   main_1: {

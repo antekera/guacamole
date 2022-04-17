@@ -33,18 +33,27 @@ export enum Component {
   video = 'video',
 }
 
-interface Content {
-  component: Component
+interface Children {
+  [name: string]: {
+    component: Component
+    children?: Children
+  }
+}
+
+interface ContentInterface {
   title?: string
+  text?: string
 }
-interface Styles {
+
+interface StylesInterface {
   className: string
-  component: Component
 }
-interface Components {
+
+interface ComponentInterface {
   component: Component
+  children?: Children
 }
 
 export interface ContentDataInterface {
-  [name: string]: Content | Styles | Components
+  [name: string]: ComponentInterface | StylesInterface | ContentInterface
 }

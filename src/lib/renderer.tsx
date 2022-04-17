@@ -3,6 +3,7 @@ import React from 'react'
 import * as R from 'ramda'
 import { uid } from 'uid'
 
+import { ContentDataInterface } from '../lib/types'
 import { keysToComponentMap } from './keysToComponentMap'
 
 const getComponent = id => keysToComponentMap[id]
@@ -19,7 +20,7 @@ const childrenRenderer = (children, block) => {
   })
 }
 
-const block = tree => {
+const block = (tree: ContentDataInterface) => {
   if (!tree) return null
 
   return Object.values(tree).map(({ component, ...props }) => {
@@ -65,6 +66,6 @@ const block = tree => {
   })
 }
 
-export const Renderer = tree => {
+export const Renderer = (tree: ContentDataInterface) => {
   return block(tree)
 }

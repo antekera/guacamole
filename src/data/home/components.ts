@@ -2,8 +2,6 @@
  * Components home
  */
 
-// TODO: DEFINIR PROPIEDADES DE ESTOS JSONS
-
 import { Component, ContentDataInterface } from '../../lib/types'
 
 export const components: ContentDataInterface = {
